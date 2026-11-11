@@ -1,0 +1,133 @@
+<!-- Use this page as the index for your project -->
+
+<!-- Add your custom CSS or Sass in /app/stylesheets/main.scss -->
+
+<!-- Extends the layout from /app/views/layout.html -->
+{% extends 'layout.html' %}
+<!--
+  In /app/views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+{% set section = "Home" %}
+
+<!--
+  Use this to set the page name which will appear at the
+  start of the <title> tag, followed by the service name.
+  This is often not needed on the homepage, where only the
+  service name is needed. You can also reuse this variable
+  within the <h1>, where they are the same.
+-->
+{% set pageName = "Home" %}
+
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <h1 class="nhsuk-heading-xl">
+        {{ pageName }}
+      </h1>
+
+      <!-- Remove the content below when you are ready to. -->
+
+      <p>
+        This is the home screen for your prototype. You can find it at <strong>/app/views/index.html</strong> and edit it there.
+      </p>
+
+      <h2 class="nhsuk-heading-m">
+        Get started
+      </h2>
+
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>
+          <a href="https://prototype-kit.service-manual.nhs.uk/how-tos">NHS prototype kit guides</a> – including a tutorial
+        </li>
+        <li>
+          <a href="https://service-manual.nhs.uk/design-system">NHS digital service manual</a> – for code snippets and guidance on using NHS styles, components and patterns
+        </li>
+        <li>
+          <a href="https://design-system.nhsapp.service.nhs.uk">NHS App design system</a> – for style, components and patterns specific to the NHS App
+        </li>
+      </ul>
+
+      <hr>
+
+      <!-- Remove the content above when you are ready to. -->
+      
+      {{ nhsappCardGroup({
+        stacked: true,
+        cards: [
+          {
+            title: "Prescriptions",
+            href: "#"
+          },
+          {
+            title: "Appointments",
+            href: "#"
+          },
+          {
+            title: "Test results",
+            href: "#"
+          },
+          {
+            title: "Vaccinations",
+            href: "#"
+          },
+          {
+            title: "Health conditions",
+            href: "#"
+          },
+          {
+            title: "Documents",
+            href: "#"
+          }
+        ]
+      }) }}
+
+      {{ nhsappCardGroup({
+        stacked: true,
+        heading: "NHS information and support",
+        cards: [
+          {
+            title: "Check your symptoms online using 111 online",
+            href: "#",
+            classes: "nhsapp-card--secondary"
+          },
+          {
+            title: "Health A to Z",
+            href: "#",
+            classes: "nhsapp-card--secondary"
+          },
+          {
+            title: "Find NHS services near you",
+            href: "#",
+            classes: "nhsapp-card--secondary"
+          }
+        ]
+      }) }}     
+
+      {{ nhsappCard({
+        classes: "nhsapp-card--dark-blue",
+        href: "#",
+        title: "Organ donors save lives",
+        titleClasses: "nhsuk-u-font-size-26",
+        descriptionHtml: '<p class="nhsuk-u-margin-top-2">Take 2 minutes to check and confirm your organ donation decision</p>',
+        img: {
+          src: "/assets/images/organ-donation-campaign.jpg"
+        }
+      }) }}
+
+      <hr>
+
+      <p class="nhsuk-body-s">Built on <a href="https://prototype-kit.service-manual.nhs.uk/updates/">NHS prototype kit {{ prototypeKitVersion }}</a> and <a href="https://github.com/nhsuk/nhsuk-frontend/releases/">NHS.UK frontend {{ nhsukFrontendVersion }}</a> with <a href="https://github.com/nhsuk/nhsapp-frontend/releases">NHS app frontend {{ nhsappFrontendVersion }}</a>.</p>
+    </div>
+  </div>
+{% endblock %}

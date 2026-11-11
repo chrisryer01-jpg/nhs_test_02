@@ -1,0 +1,46 @@
+<!--
+  This is the main layout where you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Extends the prototype kit template which in turn extends the NHS.UK frontend template -->
+{% extends "prototype-kit-template.njk" %}
+
+{# Import NHS App components #}
+{% from "nhsapp/components/badge/small/macro.njk" import nhsappBadgeSmall %}
+{% from "nhsapp/components/badge/large/macro.njk" import nhsappBadgeLarge %}
+{% from "nhsapp/components/card/macro.njk" import nhsappCardGroup %}
+{% from "nhsapp/components/card/macro.njk" import nhsappCard %}
+{% from "nhsapp/styles/icon/macro.njk" import nhsappIcon %}
+{% from "nhsapp/components/tag/macro.njk" import nhsappTag %}
+{% from "nhsapp/components/timeline/macro.njk" import nhsappTimeline %}
+
+{% if data.web !== 'yes' %}
+  {% set htmlClasses = "app-native__html" %}
+{% endif %}
+
+{% block pageTitle -%}
+  {%- if errors === true or (errors | length) %}Error: {% endif -%}
+  {%- if pageName %}{{ pageName }} – {% endif -%}
+  NHS App
+{%- endblock %}
+
+{% block head %}
+  <!-- Add your custom CSS or Sass in /app/stylesheets/main.scss -->
+  <link href="/stylesheets/main.css" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+  {% include "_includes/" + ("web" if data.web and data.web !== 'no' else "native") + "-header.html" %}
+{% endblock %}
+
+{% block footer %}
+  {% include "_includes/" + ("web-footer" if data.web and data.web !== 'no' else "native-bottom-navigation") + ".html" %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script type="module" src="/javascripts/main.js"></script>
+  {% block pageScripts %}{% endblock %}
+{% endblock %}
